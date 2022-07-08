@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/3df637a2f2.js" crossorigin="anomymous"></script>
+    <link rel="stylesheet" href="Reservas/CSS/Style.css">
+    <link rel="shortcut icon" href="IMG/cora.png" type="image/x-icon">
+    <title>Motel Império</title>
+    
+</head>
+<body>
+    <header class="cabecalho">
+        <img class="cabecalho-imagem" src="IMG/Logo_Preto.png" alt="Logo Imperio">
+        <nav class="cabecalho-menu">
+            <a href="Index.html" class="cabecalho-menu-item">Home</a>
+            <a href="Index-Reservas.html" class="cabecalho-menu-item">Reservas</a>
+            <a href="Index-Maps.html" class="cabecalho-menu-item">Maps</a>
+            <a href="Index-Contatos.html" class="cabecalho-menu-item">Contatos</a>
+            <a href="https://instagram.com/imperio_motell?igshid=ymMyMTA2M2Y=" class="cabecalho-menu-item"><i class="fa fa-instagram"></i></a>
+            <a href="#" class="cabecalho-menu-item"><i class="fa fa-facebook"></i></a>
+
+        </nav>
+    </header>
+
+    <br>
+<br>   
+
+<div class="slide">
+        <div class="slides">
+
+            <div id="voltar" class="btn">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div id="next" class="btn">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+
+            <div id="atual" class="images">
+                <a href="#"><img src="IMG/suite economica.png" alt="suites economica"></a>
+            </div>
+            <div class="images">
+                <a href="#"><img src="IMG/suites123.png" alt="suites"></a> 
+            </div>
+            <div class="images">
+                <a href="#"><img src="IMG/suite erotica.png" alt="suites erótica"></a>
+            </div>
+            <div class="images">
+                <a href="#"><img src="IMG/suite hidro.png" alt="suites hidro"></a>
+            </div>
+            <div class="images">
+                <a href="#"><img src="IMG/Imperial.png" alt="suites imperial"></a>
+            </div>
+        </div>
+
+        <div class="balls">
+        </div>
+    </div>
+</body>
+
+<script>
+    var balls = document.querySelector('.balls')
+    var quant = document.querySelectorAll('.slides .images')
+    var atual = 0
+    var imagem = document.getElementById('atual')
+    var next = document.getElementById('next')
+    var voltar = document.getElementById('voltar')
+    var rolar = true
+
+    for(let i=0; i < quant.length; i++) {
+        var div = document.createElement('div')
+        div.id = i
+        balls.appendChild(div)
+    }
+    document.getElementById('1').classList.add('imgAtual')
+
+    var pos = document.querySelectorAll('.balls div')
+
+    for(let i=0; i<pos.length; i++) {
+        pos[i].addEventListener('click', ()=>{
+            atual = pos[i].id
+            rolar = false
+            slide()
+        })
+    }
+    voltar.addEventListener('click', ()=>{
+        atual--
+        rolar = false
+        slide()
+    })
+    next.addEventListener('click', ()=>{
+        atual++
+        rolar = false
+        slide()
+    })
+
+    function slide(){
+        if(atual >= quant.length) {
+            atual=0
+        }
+        else if(atual<0) {
+            atual=quant.length-1
+        }
+
+        document.querySelector('.imgAtual').classList.remove('imgAtual')
+        imagem.style.marginLeft = -1000*atual+'px'
+        document.getElementById(atual).classList.add('imgAtual')
+    }
+    slide()
+    setInterval(()=>{
+        if(rolar) {
+            atual++
+            slide()
+        }
+        else {
+            rolar=true
+        }
+    },4000)
+</script>
+
+</html>
